@@ -1,3 +1,6 @@
+import { keys } from './additional.js';
+// import { keyCode } from './additional.js';
+
 // add basic elements on screen
 function drawMainPage() {
   const body = document.querySelector('body');
@@ -30,3 +33,24 @@ function drawMainPage() {
 }
 
 drawMainPage();
+
+const container = document.querySelector('.key-container');
+
+function drawKeys() {
+  for (let i = 0; i < keys.length; i += 1) {
+    for (let j = 0; j < keys[i].length; j += 1) {
+      const key = document.createElement('button');
+      if (keys[i][j] === 'CapsLock' || keys[i][j] === 'Shift' || keys[i][j] === 'Backspace' || keys[i][j] === 'Enter') {
+        key.className = 'key key_long';
+      } else if (keys[i][j] === 'space') {
+        key.className = 'key key_space';
+      } else {
+        key.className = 'key';
+      }
+      key.innerHTML = keys[i][j];
+      container.appendChild(key);
+    }
+  }
+}
+
+drawKeys();

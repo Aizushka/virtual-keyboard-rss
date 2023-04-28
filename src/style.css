@@ -1,0 +1,38 @@
+.title {
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+}
+
+.key-textarea {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid green;
+}
+
+.key-container {
+  margin: 0 auto;
+  border: 1px solid red;
+
+  display: grid;
+  grid-template-columns: repeat(15, 40px);
+  grid-template-rows: repeat(5, 40px);
+  gap: 5px;
+  justify-content: center;
+}
+
+.key {
+  border: 1px solid darkgrey;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+.key_long {
+  grid-column: span 2;
+
+}
+.key_space {
+  grid-column: span 7;
+}
