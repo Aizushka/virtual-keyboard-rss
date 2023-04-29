@@ -47,6 +47,7 @@ function drawKeys() {
       } else {
         key.className = 'key';
       }
+      key.setAttribute('type', 'button');
       key.innerHTML = keys[i][j];
       container.appendChild(key);
     }
@@ -54,3 +55,39 @@ function drawKeys() {
 }
 
 drawKeys();
+
+// изменения на нажатие кнопок клавиатуры
+const screen = document.querySelector('.key-textarea');
+const btns = document.querySelectorAll('button');
+
+function isPushed() {
+  for (let i = 0; i < btns.length; i += 1) {
+    const btn = btns[i];
+    // btn.onclick = function () {
+    btn.addEventListener('click', () => {
+      const btnValue = btn.innerHTML;
+      switch (btnValue) {
+        case 'Enter':
+          screen.innerHTML += '\n';
+          break;
+        case 'space':
+          screen.innerHTML += ' ';
+          break;
+        case 'Tab':
+          screen.innerHTML += '    ';
+          break;
+        case 'Backspace':
+          screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
+          break;
+        case 'Del':
+          // screen.innerHTML = screen.innerHTML.replace(btn[i + 1], '');
+          // screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
+          break;
+        default:
+          screen.innerHTML += btn.innerHTML;
+      }
+    });
+  }
+}
+
+isPushed();
