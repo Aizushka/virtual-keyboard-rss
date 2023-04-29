@@ -184,28 +184,28 @@ const keys = [
     type: 'Ctrl', keycode: 16, key: 'Control', en: { text: 'Ctrl', caps: 'Ctrl', shift: 'Ctrl' }, ru: { text: 'Ctrl', caps: 'Ctrl', shift: 'Ctrl' },
   },
   {
-    type: 'Win', keycode: 91, key: 'Meta', en: { text: 'Win', caps: '_', shift: '_' }, ru: { text: 'Win', caps: '_', shift: '_' },
+    type: 'Win', keycode: 91, key: 'Meta', en: { text: 'Win', caps: 'Win', shift: 'Win' }, ru: { text: 'Win', caps: 'Win', shift: 'Win' },
   },
   {
-    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', caps: '_', shift: '_' }, ru: { text: 'Alt', caps: '_', shift: '_' },
+    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', caps: 'Alt', shift: 'Alt' }, ru: { text: 'Alt', caps: 'Alt', shift: 'Alt' },
   },
   {
-    type: 'Space', keycode: 32, key: '', en: { text: 'Space', caps: '_', shift: '_' }, ru: { text: 'Space', caps: '_', shift: '_' },
+    type: 'Space', keycode: 32, key: '', en: { text: 'Space', caps: 'Space', shift: 'Space' }, ru: { text: 'Space', caps: 'Space', shift: 'Space' },
   },
   {
-    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', caps: '_', shift: '_' }, ru: { text: 'Alt', caps: '_', shift: '_' },
+    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', caps: 'Alt', shift: 'Alt' }, ru: { text: 'Alt', caps: 'Alt', shift: 'Alt' },
   },
   {
-    type: 'Arrow', keycode: 37, key: 'ArrowLeft', en: { text: '◀', caps: '_', shift: '_' }, ru: { text: '◀', caps: '_', shift: '_' },
+    type: 'Arrow', keycode: 37, key: 'ArrowLeft', en: { text: '◀', caps: '◀', shift: '◀' }, ru: { text: '◀', caps: '◀', shift: '◀' },
   },
   {
-    type: 'Arrow', keycode: 40, key: 'ArrowDown', en: { text: '▼', caps: '_', shift: '_' }, ru: { text: '▼', caps: '_', shift: '_' },
+    type: 'Arrow', keycode: 40, key: 'ArrowDown', en: { text: '▼', caps: '▼', shift: '▼' }, ru: { text: '▼', caps: '▼', shift: '▼' },
   },
   {
-    type: 'Arrow', keycode: 39, key: 'ArrowRight', en: { text: '▶', caps: '_', shift: '_' }, ru: { text: '▶', caps: '_', shift: '_' },
+    type: 'Arrow', keycode: 39, key: 'ArrowRight', en: { text: '▶', caps: '▶', shift: '▶' }, ru: { text: '▶', caps: '▶', shift: '▶' },
   },
   {
-    type: 'Ctrl', keycode: 17, key: 'Control', en: { text: 'Ctrl', caps: '_', shift: '_' }, ru: { text: 'Ctrl', caps: '_', shift: '_' },
+    type: 'Ctrl', keycode: 17, key: 'Control', en: { text: 'Ctrl', caps: 'Ctrl', shift: 'Ctrl' }, ru: { text: 'Ctrl', caps: 'Ctr', shift: 'Ctr' },
   },
 
 ];

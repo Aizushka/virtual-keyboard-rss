@@ -36,11 +36,11 @@ drawMainPage();
 // отрисовать кнопки в контейнере
 const container = document.querySelector('.key-container');
 
-function drawKeys() {
+function drawKeyBoard(lan = 'en', state = 'text') {
   for (let i = 0; i < keys.length; i += 1) {
     const key = document.createElement('button');
 
-    switch (keys[i].en.text) {
+    switch (keys[i][lan][state]) {
       case 'Backspace':
         key.className = 'key key_long key_backspace';
         break;
@@ -88,16 +88,15 @@ function drawKeys() {
     }
 
     key.setAttribute('type', 'button');
-    key.innerHTML = keys[i].en.text;
+    key.innerHTML = keys[i][lan][state];
     container.appendChild(key);
   }
 }
-drawKeys();
+drawKeyBoard();
 
 // добавление символов на экран при нажатии на кнопоку экранной клавиатуры
 
 const screen = document.querySelector('.key-textarea');
-// const btns = document.querySelectorAll('button');
 const symbols = document.querySelectorAll('.key_symbol');
 const arrows = document.querySelectorAll('.key_arrow');
 const tab = document.querySelector('.key_tab');
@@ -105,11 +104,15 @@ const enter = document.querySelector('.key_enter');
 const space = document.querySelector('.key_space');
 const backspace = document.querySelector('.key_backspace');
 // const del = document.querySelector('.key_del');
-// const capsLock = document.querySelector('.key_capslock');
+const capsLock = document.querySelector('.key_capslock');
+
 // const shifts = document.querySelectorAll('.key_shift');
 // const ctrls = document.querySelectorAll('.key_ctrl');
 // const win = document.querySelectorAll('.key_win');
 // const alt = document.querySelectorAll('.key_alt');
+
+const language = 'en';
+let keyState = 'text';
 
 function addSymbols(symbol) {
   switch (symbol) {
@@ -131,9 +134,18 @@ function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
 
-//
-//
-//
+function changeCase(lang, state, newState) {
+  for (let i = 0; i < symbols.length; i += 1) {
+    for (let j = 0; j < keys.length; j += 1) {
+      if (symbols[i].innerHTML === keys[j][lang][state]) {
+        symbols[i].innerHTML = keys[j][lang][newState];
+        break;
+      }
+    }
+  }
+}
+
+// add EventListeners
 
 for (let i = 0; i < symbols.length; i += 1) {
   symbols[i].addEventListener('click', () => {
@@ -149,6 +161,19 @@ enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
 tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
 space.addEventListener('click', () => { addSymbols(space.innerHTML); });
 backspace.addEventListener('click', () => { deletePreviousSymbol(); });
+
+capsLock.addEventListener('click', () => {
+  capsLock.classList.toggle('active');
+
+  let newKeyState;
+  if (keyState === 'text') {
+    newKeyState = 'caps';
+  } else if (keyState === 'caps') {
+    newKeyState = 'text';
+  }
+  changeCase(language, keyState, newKeyState);
+  keyState = newKeyState;
+});
 
 // document.addEventListener('keydown', (event) => {
 //   console.log(event.key);

@@ -36,3 +36,8 @@
 .key_space {
   grid-column: span 7;
 }
+
+.active {
+  border: 1px solid red;
+  color: red;
+}
