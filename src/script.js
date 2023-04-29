@@ -1,7 +1,7 @@
 import { keys } from './additional.js';
 // import { keyCode } from './additional.js';
 
-// add basic elements on screen
+// отрисовать базовые элементы страницы: название, блок ввода текста, блок под кнопки, подписи
 function drawMainPage() {
   const body = document.querySelector('body');
 
@@ -36,17 +36,59 @@ drawMainPage();
 
 const container = document.querySelector('.key-container');
 
+// отрисовать кнопки в контейнере
 function drawKeys() {
   for (let i = 0; i < keys.length; i += 1) {
     for (let j = 0; j < keys[i].length; j += 1) {
       const key = document.createElement('button');
-      if (keys[i][j] === 'CapsLock' || keys[i][j] === 'Shift' || keys[i][j] === 'Backspace' || keys[i][j] === 'Enter') {
-        key.className = 'key key_long';
-      } else if (keys[i][j] === 'space') {
-        key.className = 'key key_space';
-      } else {
-        key.className = 'key';
+
+      switch (keys[i][j]) {
+        case 'Backspace':
+          key.className = 'key key_long key_backspace';
+          break;
+        case 'Del':
+          key.className = 'key key_del';
+          break;
+        case 'CapsLock':
+          key.className = 'key key_long key_caps-lock';
+          break;
+        case 'Shift':
+          key.className = 'key key_long key_shift';
+          break;
+        case 'Ctrl':
+          key.className = 'key key_ctrl';
+          break;
+        case 'Win':
+          key.className = 'key key_win';
+          break;
+        case 'Alt':
+          key.className = 'key key_alt';
+          break;
+        case 'Enter':
+          key.className = 'key key_long key_enter';
+          break;
+        case 'Tab':
+          key.className = 'key key_tab';
+          break;
+        case 'space':
+          key.className = 'key key_space';
+          break;
+        case '◀️':
+          key.className = 'key key_arrow key_arrow-left';
+          break;
+        case '▶️':
+          key.className = 'key key_arrow key_arrow-right';
+          break;
+        case '▲':
+          key.className = 'key key_arrow key_arrow-up';
+          break;
+        case '▼':
+          key.className = 'key key_arrow key_arrow-down';
+          break;
+        default:
+          key.className = 'key';
       }
+
       key.setAttribute('type', 'button');
       key.innerHTML = keys[i][j];
       container.appendChild(key);
@@ -56,7 +98,7 @@ function drawKeys() {
 
 drawKeys();
 
-// изменения на нажатие кнопок клавиатуры
+// добавление символов на экран при нажатии на кнопоку экранной клавиатуры
 const screen = document.querySelector('.key-textarea');
 const btns = document.querySelectorAll('button');
 
