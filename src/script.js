@@ -35,62 +35,61 @@ drawMainPage();
 
 // отрисовать кнопки в контейнере
 const container = document.querySelector('.key-container');
+
 function drawKeys() {
   for (let i = 0; i < keys.length; i += 1) {
-    for (let j = 0; j < keys[i].length; j += 1) {
-      const key = document.createElement('button');
+    const key = document.createElement('button');
 
-      switch (keys[i][j]) {
-        case 'Backspace':
-          key.className = 'key key_long key_backspace';
-          break;
-        case 'Del':
-          key.className = 'key key_del';
-          break;
-        case 'CapsLock':
-          key.className = 'key key_long key_capslock';
-          break;
-        case 'Shift':
-          key.className = 'key key_long key_shift';
-          break;
-        case 'Ctrl':
-          key.className = 'key key_ctrl';
-          break;
-        case 'Win':
-          key.className = 'key key_win';
-          break;
-        case 'Alt':
-          key.className = 'key key_alt';
-          break;
-        case 'Enter':
-          key.className = 'key key_long key_enter';
-          break;
-        case 'Tab':
-          key.className = 'key key_tab';
-          break;
-        case 'space':
-          key.className = 'key key_space';
-          break;
-        case '◀️':
-          key.className = 'key key_arrow key_arrow-left';
-          break;
-        case '▶️':
-          key.className = 'key key_arrow key_arrow-right';
-          break;
-        case '▲':
-          key.className = 'key key_arrow key_arrow-up';
-          break;
-        case '▼':
-          key.className = 'key key_arrow key_arrow-down';
-          break;
-        default:
-          key.className = 'key key_symbol';
-      }
-
-      key.setAttribute('type', 'button');
-      key.innerHTML = keys[i][j];
-      container.appendChild(key);
+    switch (keys[i].en.text) {
+      case 'Backspace':
+        key.className = 'key key_long key_backspace';
+        break;
+      case 'Del':
+        key.className = 'key key_del';
+        break;
+      case 'CapsLock':
+        key.className = 'key key_long key_capslock';
+        break;
+      case 'Shift':
+        key.className = 'key key_long key_shift';
+        break;
+      case 'Ctrl':
+        key.className = 'key key_ctrl';
+        break;
+      case 'Win':
+        key.className = 'key key_win';
+        break;
+      case 'Alt':
+        key.className = 'key key_alt';
+        break;
+      case 'Enter':
+        key.className = 'key key_long key_enter';
+        break;
+      case 'Tab':
+        key.className = 'key key_tab';
+        break;
+      case 'Space':
+        key.className = 'key key_space';
+        break;
+      case '◀️':
+        key.className = 'key key_arrow key_arrow-left';
+        break;
+      case '▶️':
+        key.className = 'key key_arrow key_arrow-right';
+        break;
+      case '▲':
+        key.className = 'key key_arrow key_arrow-up';
+        break;
+      case '▼':
+        key.className = 'key key_arrow key_arrow-down';
+        break;
+      default:
+        key.className = 'key key_symbol';
     }
+
+    key.setAttribute('type', 'button');
+    key.innerHTML = keys[i].en.text;
+    container.appendChild(key);
   }
 }
 drawKeys();
@@ -117,7 +116,7 @@ function addSymbols(symbol) {
     case 'Enter':
       screen.innerHTML += '\n';
       break;
-    case 'space':
+    case 'Space':
       screen.innerHTML += ' ';
       break;
     case 'Tab':
@@ -131,6 +130,10 @@ function addSymbols(symbol) {
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
+
+//
+//
+//
 
 for (let i = 0; i < symbols.length; i += 1) {
   symbols[i].addEventListener('click', () => {
@@ -146,3 +149,7 @@ enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
 tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
 space.addEventListener('click', () => { addSymbols(space.innerHTML); });
 backspace.addEventListener('click', () => { deletePreviousSymbol(); });
+
+// document.addEventListener('keydown', (event) => {
+//   console.log(event.key);
+// });
