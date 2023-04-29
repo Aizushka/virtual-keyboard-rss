@@ -31,12 +31,10 @@ function drawMainPage() {
   body.appendChild(text1);
   body.appendChild(text2);
 }
-
 drawMainPage();
 
-const container = document.querySelector('.key-container');
-
 // отрисовать кнопки в контейнере
+const container = document.querySelector('.key-container');
 function drawKeys() {
   for (let i = 0; i < keys.length; i += 1) {
     for (let j = 0; j < keys[i].length; j += 1) {
@@ -50,7 +48,7 @@ function drawKeys() {
           key.className = 'key key_del';
           break;
         case 'CapsLock':
-          key.className = 'key key_long key_caps-lock';
+          key.className = 'key key_long key_capslock';
           break;
         case 'Shift':
           key.className = 'key key_long key_shift';
@@ -86,7 +84,7 @@ function drawKeys() {
           key.className = 'key key_arrow key_arrow-down';
           break;
         default:
-          key.className = 'key';
+          key.className = 'key key_symbol';
       }
 
       key.setAttribute('type', 'button');
@@ -95,41 +93,56 @@ function drawKeys() {
     }
   }
 }
-
 drawKeys();
 
 // добавление символов на экран при нажатии на кнопоку экранной клавиатуры
-const screen = document.querySelector('.key-textarea');
-const btns = document.querySelectorAll('button');
 
-function isPushed() {
-  for (let i = 0; i < btns.length; i += 1) {
-    const btn = btns[i];
-    // btn.onclick = function () {
-    btn.addEventListener('click', () => {
-      const btnValue = btn.innerHTML;
-      switch (btnValue) {
-        case 'Enter':
-          screen.innerHTML += '\n';
-          break;
-        case 'space':
-          screen.innerHTML += ' ';
-          break;
-        case 'Tab':
-          screen.innerHTML += '    ';
-          break;
-        case 'Backspace':
-          screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
-          break;
-        case 'Del':
-          // screen.innerHTML = screen.innerHTML.replace(btn[i + 1], '');
-          // screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
-          break;
-        default:
-          screen.innerHTML += btn.innerHTML;
-      }
-    });
+const screen = document.querySelector('.key-textarea');
+// const btns = document.querySelectorAll('button');
+const symbols = document.querySelectorAll('.key_symbol');
+const arrows = document.querySelectorAll('.key_arrow');
+const tab = document.querySelector('.key_tab');
+const enter = document.querySelector('.key_enter');
+const space = document.querySelector('.key_space');
+const backspace = document.querySelector('.key_backspace');
+// const del = document.querySelector('.key_del');
+// const capsLock = document.querySelector('.key_capslock');
+// const shifts = document.querySelectorAll('.key_shift');
+// const ctrls = document.querySelectorAll('.key_ctrl');
+// const win = document.querySelectorAll('.key_win');
+// const alt = document.querySelectorAll('.key_alt');
+
+function addSymbols(symbol) {
+  switch (symbol) {
+    case 'Enter':
+      screen.innerHTML += '\n';
+      break;
+    case 'space':
+      screen.innerHTML += ' ';
+      break;
+    case 'Tab':
+      screen.innerHTML += '    ';
+      break;
+    default:
+      screen.innerHTML += symbol;
+      break;
   }
 }
+function deletePreviousSymbol() {
+  screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
+}
 
-isPushed();
+for (let i = 0; i < symbols.length; i += 1) {
+  symbols[i].addEventListener('click', () => {
+    addSymbols(symbols[i].innerHTML);
+  });
+}
+for (let i = 0; i < arrows.length; i += 1) {
+  arrows[i].addEventListener('click', () => {
+    addSymbols(arrows[i].innerHTML);
+  });
+}
+enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
+tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
+space.addEventListener('click', () => { addSymbols(space.innerHTML); });
+backspace.addEventListener('click', () => { deletePreviousSymbol(); });
