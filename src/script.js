@@ -36,11 +36,11 @@ drawMainPage();
 // отрисовать кнопки в контейнере
 const container = document.querySelector('.key-container');
 
-function drawKeyBoard(lan = 'en', state = 'text') {
+function drawKeyBoard(langf = 'en', statef = 'text') {
   for (let i = 0; i < keys.length; i += 1) {
     const key = document.createElement('button');
 
-    switch (keys[i][lan][state]) {
+    switch (keys[i][langf][statef]) {
       case 'Backspace':
         key.className = 'key key_long key_backspace';
         break;
@@ -68,6 +68,9 @@ function drawKeyBoard(lan = 'en', state = 'text') {
       case 'Tab':
         key.className = 'key key_tab';
         break;
+      case 'en/ru':
+        key.className = 'key key_lang';
+        break;
       case 'Space':
         key.className = 'key key_space';
         break;
@@ -88,13 +91,13 @@ function drawKeyBoard(lan = 'en', state = 'text') {
     }
 
     key.setAttribute('type', 'button');
-    key.innerHTML = keys[i][lan][state];
+    key.innerHTML = keys[i][langf][statef];
     container.appendChild(key);
   }
 }
 drawKeyBoard();
 
-// добавление символов на экран при нажатии на кнопоку экранной клавиатуры
+// список переменных
 
 const screen = document.querySelector('.key-textarea');
 const symbols = document.querySelectorAll('.key_symbol');
@@ -105,14 +108,16 @@ const space = document.querySelector('.key_space');
 const backspace = document.querySelector('.key_backspace');
 // const del = document.querySelector('.key_del');
 const capsLock = document.querySelector('.key_capslock');
-
+const lang = document.querySelector('.key_lang');
 // const shifts = document.querySelectorAll('.key_shift');
 // const ctrls = document.querySelectorAll('.key_ctrl');
 // const win = document.querySelectorAll('.key_win');
 // const alt = document.querySelectorAll('.key_alt');
 
-const language = 'en';
-let keyState = 'text';
+let keysLanguage = 'en';
+let keysState = 'text';
+
+// список функций
 
 function addSymbols(symbol) {
   switch (symbol) {
@@ -133,19 +138,51 @@ function addSymbols(symbol) {
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
-
-function changeCase(lang, state, newState) {
-  for (let i = 0; i < symbols.length; i += 1) {
-    for (let j = 0; j < keys.length; j += 1) {
-      if (symbols[i].innerHTML === keys[j][lang][state]) {
-        symbols[i].innerHTML = keys[j][lang][newState];
+function changeCase(language, state, newState) {
+  for (let i = 0; i < keys.length; i += 1) {
+    if (keys[i][language][state] === lang.innerHTML) {
+      lang.innerHTML = keys[i][language][newState];
+      break;
+    }
+    for (let j = 0; j < symbols.length; j += 1) {
+      if (keys[i][language][state] === symbols[j].innerHTML) {
+        symbols[j].innerHTML = keys[i][language][newState];
         break;
       }
     }
   }
 }
 
+function changeLang(language, newLanguage, state) {
+  for (let i = 0; i < symbols.length; i += 1) {
+    for (let j = 0; j < keys.length; j += 1) {
+      if (symbols[i].innerHTML === keys[j][language][state]) {
+        symbols[i].innerHTML = keys[j][newLanguage][state];
+        break;
+      }
+    }
+  }
+}
+
+// screen.focus();
+// function deleteNextSymbol() {
+//   console.log('del');
+
+//   screen.focus();
+
+//   screen.setRangeText('', screen.selectionStart, screen.selectionstart + 1, 'start');
+// }
+
+// отслеживание курсора
+
 // add EventListeners
+
+// screen.addEventListener('focus', () => {
+//   let start = screen.selectionStart;
+//   let end = screen.selectionEnd;
+//   console.log(start);
+//   console.log(end);
+// });
 
 for (let i = 0; i < symbols.length; i += 1) {
   symbols[i].addEventListener('click', () => {
@@ -161,18 +198,29 @@ enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
 tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
 space.addEventListener('click', () => { addSymbols(space.innerHTML); });
 backspace.addEventListener('click', () => { deletePreviousSymbol(); });
-
+// del.addEventListener('click', () => { deleteNextSymbol(); });
 capsLock.addEventListener('click', () => {
   capsLock.classList.toggle('active');
 
-  let newKeyState;
-  if (keyState === 'text') {
-    newKeyState = 'caps';
-  } else if (keyState === 'caps') {
-    newKeyState = 'text';
+  let newKeysState;
+  if (keysState === 'text') {
+    newKeysState = 'caps';
+  } else if (keysState === 'caps') {
+    newKeysState = 'text';
   }
-  changeCase(language, keyState, newKeyState);
-  keyState = newKeyState;
+  changeCase(keysLanguage, keysState, newKeysState);
+  keysState = newKeysState;
+});
+
+lang.addEventListener('click', () => {
+  let newKeysLanguage;
+  if (keysLanguage === 'en') {
+    newKeysLanguage = 'ru';
+  } else {
+    newKeysLanguage = 'en';
+  }
+  changeLang(keysLanguage, newKeysLanguage, keysState);
+  keysLanguage = newKeysLanguage;
 });
 
 // document.addEventListener('keydown', (event) => {

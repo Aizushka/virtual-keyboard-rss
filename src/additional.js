@@ -190,6 +190,9 @@ const keys = [
     type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', caps: 'Alt', shift: 'Alt' }, ru: { text: 'Alt', caps: 'Alt', shift: 'Alt' },
   },
   {
+    type: 'Lang', keycode: 0, key: 'Lang', en: { text: 'en/ru', caps: 'EN/RU', shift: 'EN/RU' }, ru: { text: 'en/ru', caps: 'EN/RU', shift: 'EN/RU' },
+  },
+  {
     type: 'Space', keycode: 32, key: '', en: { text: 'Space', caps: 'Space', shift: 'Space' }, ru: { text: 'Space', caps: 'Space', shift: 'Space' },
   },
   {
