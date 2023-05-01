@@ -147,9 +147,9 @@ function getState() {
   if (capsIsActive && shiftIsActive) {
     newKeysState = 'capsShift';
   } else if (capsIsActive && !shiftIsActive) {
-    newKeysState = 'CapsLock';
+    newKeysState = 'capsLock';
   } else if (shiftIsActive && !capsIsActive) {
-    newKeysState = 'Shift';
+    newKeysState = 'shift';
   } else {
     newKeysState = 'text';
   }
