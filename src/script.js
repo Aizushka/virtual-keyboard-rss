@@ -73,10 +73,10 @@ function drawKeyBoard(langf = 'en', statef = 'text') {
       case 'Space':
         key.className = 'key key_space';
         break;
-      case '◀️':
+      case '◀':
         key.className = 'key key_arrow key_arrow-left';
         break;
-      case '▶️':
+      case '▶':
         key.className = 'key key_arrow key_arrow-right';
         break;
       case '▲':
@@ -158,6 +158,9 @@ function getState() {
 function changeSymbols(newLanguage, newState) {
   for (let i = 0; i < symbols.length; i += 1) {
     for (let j = 0; j < keysArray.length; j += 1) {
+      if (lang.innerHTML === keysArray[j][keysLanguage][keysState]) {
+        lang.innerHTML = keysArray[j][newLanguage][newState];
+      }
       if (symbols[i].innerHTML === keysArray[j][keysLanguage][keysState]) {
         symbols[i].innerHTML = keysArray[j][newLanguage][newState];
         break;
