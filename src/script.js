@@ -100,6 +100,7 @@ drawKeyBoard();
 // список переменных
 
 const screen = document.querySelector('.key-textarea');
+screen.focus();
 const symbols = document.querySelectorAll('.key_symbol');
 const arrows = document.querySelectorAll('.key_arrow');
 const tab = document.querySelector('.key_tab');
@@ -223,6 +224,25 @@ tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
 space.addEventListener('click', () => { addSymbols(space.innerHTML); });
 backspace.addEventListener('click', () => { deletePreviousSymbol(); });
 
-// document.addEventListener('keydown', (event) => {
-//   console.log(event.key);
-// });
+document.addEventListener('keydown', (event) => {
+  // -------------Обязательно в коде
+  event.preventDefault();
+  screen.focus();
+
+  // ----------- Далее Эксперименты
+
+  const eventKey = event.key;
+  const charCode = eventKey.charCodeAt();
+
+  console.log(eventKey);
+  // console.log(charCode);
+  // console.log(eventKey.toString().length);
+
+  if (eventKey.toString().length === 1) {
+    console.log('this is char!');
+  } else {
+    console.log('this is functiomal!');
+  }
+
+  // найти нажимаемый элемент на странице
+});
