@@ -37,9 +37,10 @@ drawMainPage();
 const container = document.querySelector('.key-container');
 
 function drawKeyBoard(langf = 'en', statef = 'text') {
-  for (let i = 0; i < keysArray.length; i += 1) {
+  keysArray.forEach((e) => {
     const key = document.createElement('button');
-    switch (keysArray[i][langf][statef]) {
+
+    switch (e[langf][statef]) {
       case 'Backspace':
         key.className = 'key key_long key_backspace';
         break;
@@ -90,9 +91,9 @@ function drawKeyBoard(langf = 'en', statef = 'text') {
     }
 
     key.setAttribute('type', 'button');
-    key.innerHTML = keysArray[i][langf][statef];
+    key.innerHTML = e[langf][statef];
     container.appendChild(key);
-  }
+  });
 }
 drawKeyBoard();
 
@@ -142,7 +143,7 @@ function addSymbols(symbol) {
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
-function getState() {
+function updateState() {
   if (capsIsActive && shiftIsActive) {
     newKeysState = 'capsShift';
   } else if (capsIsActive && !shiftIsActive) {
@@ -179,7 +180,7 @@ capsLock.addEventListener('click', () => {
     capsIsActive = true;
   }
 
-  getState();
+  updateState();
   changeSymbols(keysLanguage, newKeysState);
   //
 });
@@ -197,7 +198,7 @@ shifts.forEach((shift) => {
       shifts.forEach((e) => e.classList.add('active'));
     }
 
-    getState();
+    updateState();
     changeSymbols(keysLanguage, newKeysState);
   });
 });
