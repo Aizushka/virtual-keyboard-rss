@@ -142,7 +142,6 @@ function addSymbols(symbol) {
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
-
 function getState() {
   if (capsIsActive && shiftIsActive) {
     newKeysState = 'capsShift';
@@ -154,7 +153,6 @@ function getState() {
     newKeysState = 'text';
   }
 }
-
 function changeSymbols(newLanguage, newState) {
   for (let i = 0; i < symbols.length; i += 1) {
     for (let j = 0; j < keysArray.length; j += 1) {
@@ -171,6 +169,8 @@ function changeSymbols(newLanguage, newState) {
   keysState = newKeysState;
 }
 
+// All eventListeners
+
 capsLock.addEventListener('click', () => {
   capsLock.classList.toggle('active');
   if (capsIsActive === true) {
@@ -183,7 +183,6 @@ capsLock.addEventListener('click', () => {
   changeSymbols(keysLanguage, newKeysState);
   //
 });
-
 shifts.forEach((shift) => {
   shift.addEventListener('click', () => {
     if (shiftIsActive === true) {
@@ -202,27 +201,26 @@ shifts.forEach((shift) => {
     changeSymbols(keysLanguage, newKeysState);
   });
 });
-
-for (let i = 0; i < symbols.length; i += 1) {
-  symbols[i].addEventListener('click', () => {
-    addSymbols(symbols[i].innerHTML);
-  });
-}
-for (let i = 0; i < arrows.length; i += 1) {
-  arrows[i].addEventListener('click', () => {
-    addSymbols(arrows[i].innerHTML);
-  });
-}
-enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
-tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
-space.addEventListener('click', () => { addSymbols(space.innerHTML); });
-backspace.addEventListener('click', () => { deletePreviousSymbol(); });
-
 lang.addEventListener('click', () => {
   const newKeysLanguage = keysLanguage === 'en' ? 'ru' : 'en';
   changeSymbols(newKeysLanguage, keysState);
   keysLanguage = newKeysLanguage;
 });
+
+symbols.forEach((symbol) => {
+  symbol.addEventListener('click', () => {
+    addSymbols(symbol.innerHTML);
+  });
+});
+arrows.forEach((arrow) => {
+  arrow.addEventListener('click', () => {
+    addSymbols(arrow.innerHTML);
+  });
+});
+enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
+tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
+space.addEventListener('click', () => { addSymbols(space.innerHTML); });
+backspace.addEventListener('click', () => { deletePreviousSymbol(); });
 
 // document.addEventListener('keydown', (event) => {
 //   console.log(event.key);
