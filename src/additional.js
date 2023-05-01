@@ -7,210 +7,740 @@ const keyCode = [
 ];
 
 const keysArray = [
+  // row 1
   {
-    type: 'symbol', keycode: 192, key: '`', en: { text: '`', CapsLock: '`', Shift: '~', capsShift: '`' }, ru: { text: 'ё', CapsLock: 'Ё', Shift: 'Ё', capsShift: '`' }
+    type: 'symbol',
+    keycode: 192,
+    key: '`',
+    en: {
+      text: '`', capsLock: '`', shift: '~', capsShift: '~',
+    },
+    ru: {
+      text: 'ё', capsLock: 'Ё', shift: 'Ё', capsShift: 'ё',
+    },
   },
   {
-    type: 'symbol', keycode: 49, key: '1', en: { text: '1', CapsLock: '1', Shift: '!', capsShift: '!' }, ru: { text: '1', CapsLock: '1', Shift: '!', capsShift: '`'  },
+    type: 'symbol',
+    keycode: 49,
+    key: '1',
+    en: {
+      text: '1', capsLock: '1', shift: '!', capsShift: '!',
+    },
+    ru: {
+      text: '1', capsLock: '1', shift: '!', capsShift: '!',
+    },
   },
   {
-    type: 'symbol', keycode: 50, key: '2', en: { text: '2', CapsLock: '2', Shift: '"', capsShift: '`' }, ru: { text: '2', CapsLock: '2', Shift: '"' },
+    type: 'symbol',
+    keycode: 50,
+    key: '2',
+    en: {
+      text: '2', capsLock: '2', shift: '@', capsShift: '@',
+    },
+    ru: {
+      text: '2', capsLock: '2', shift: '"', capsShift: '"',
+    },
   },
   {
-    type: 'symbol', keycode: 51, key: '3', en: { text: '3', CapsLock: '3', Shift: '#', capsShift: '`' }, ru: { text: '3', CapsLock: '3', Shift: '№' },
+    type: 'symbol',
+    keycode: 51,
+    key: '3',
+    en: {
+      text: '3', capsLock: '3', shift: '#', capsShift: '#',
+    },
+    ru: {
+      text: '3', capsLock: '3', shift: '№', capsShift: '№',
+    },
   },
   {
-    type: 'symbol', keycode: 52, key: '4', en: { text: '4', CapsLock: '4', Shift: '$', capsShift: '`' }, ru: { text: '4', CapsLock: '4', Shift: ';' },
+    type: 'symbol',
+    keycode: 52,
+    key: '4',
+    en: {
+      text: '4', capsLock: '4', shift: '$', capsShift: '$',
+    },
+    ru: {
+      text: '4', capsLock: '4', shift: ';', capsShift: ';',
+    },
   },
   {
-    type: 'symbol', keycode: 53, key: '5', en: { text: '5', CapsLock: '5', Shift: '%', capsShift: '`' }, ru: { text: '5', CapsLock: '5', Shift: '%' },
+    type: 'symbol',
+    keycode: 53,
+    key: '5',
+    en: {
+      text: '5', capsLock: '5', shift: '%', capsShift: '%',
+    },
+    ru: {
+      text: '5', capsLock: '5', shift: '%', capsShift: '%',
+    },
   },
   {
-    type: 'symbol', keycode: 54, key: '6', en: { text: '6', CapsLock: '6', Shift: '^', capsShift: '`' }, ru: { text: '6', CapsLock: '6', Shift: ':' },
+    type: 'symbol',
+    keycode: 54,
+    key: '6',
+    en: {
+      text: '6', capsLock: '6', shift: '^', capsShift: '^',
+    },
+    ru: {
+      text: '6', capsLock: '6', shift: ':', capsShift: ':',
+    },
   },
   {
-    type: 'symbol', keycode: 55, key: '7', en: { text: '7', CapsLock: '7', Shift: '&', capsShift: '`' }, ru: { text: '7', CapsLock: '7', Shift: '?' },
+    type: 'symbol',
+    keycode: 55,
+    key: '7',
+    en: {
+      text: '7', capsLock: '7', shift: '&', capsShift: '&',
+    },
+    ru: {
+      text: '7', capsLock: '7', shift: '?', capsShift: '?',
+    },
   },
   {
-    type: 'symbol', keycode: 56, key: '8', en: { text: '8', CapsLock: '8', Shift: '*', capsShift: '`' }, ru: { text: '8', CapsLock: '8', Shift: '*' },
+    type: 'symbol',
+    keycode: 56,
+    key: '8',
+    en: {
+      text: '8', capsLock: '8', shift: '*', capsShift: '*',
+    },
+    ru: {
+      text: '8', capsLock: '8', shift: '*', capsShift: '*',
+    },
   },
   {
-    type: 'symbol', keycode: 57, key: '9', en: { text: '9', CapsLock: '9', Shift: '(', capsShift: '`' }, ru: { text: '9', CapsLock: '9', Shift: '(' },
+    type: 'symbol',
+    keycode: 57,
+    key: '9',
+    en: {
+      text: '9', capsLock: '9', shift: '(', capsShift: '(',
+    },
+    ru: {
+      text: '9', capsLock: '9', shift: '(', capsShift: '(',
+    },
   },
   {
-    type: 'symbol', keycode: 48, key: '0', en: { text: '0', CapsLock: '0', Shift: ')', capsShift: '`' }, ru: { text: '0', CapsLock: '0', Shift: ')' },
+    type: 'symbol',
+    keycode: 48,
+    key: '0',
+    en: {
+      text: '0', capsLock: '0', shift: ')', capsShift: ')',
+    },
+    ru: {
+      text: '0', capsLock: '0', shift: ')', capsShift: ')',
+    },
   },
   {
-    type: 'symbol', keycode: 189, key: '-', en: { text: '-', CapsLock: '-', Shift: '_', capsShift: '`' }, ru: { text: '-', CapsLock: '-', Shift: '_' },
+    type: 'symbol',
+    keycode: 189,
+    key: '-',
+    en: {
+      text: '-', capsLock: '-', shift: '_', capsShift: '_',
+    },
+    ru: {
+      text: '-', capsLock: '-', shift: '_', capsShift: '_',
+    },
   },
   {
-    type: 'symbol', keycode: 187, key: '=', en: { text: '=', CapsLock: '=', Shift: '+', capsShift: '`' }, ru: { text: '=', CapsLock: '=', Shift: '+' },
-  },
-
-  {
-    type: 'Backspace', keycode: 8, key: 'Backspace', en: { text: 'Backspace', CapsLock: 'Backspace', Shift: 'Backspace', capsShift: '`' }, ru: { text: 'Backspace', CapsLock: 'Backspace', Shift: 'Backspace' },
-  },
-  {
-    type: 'Tab', keycode: 9, key: 'Tab', en: { text: 'Tab', CapsLock: 'Tab', Shift: 'Tab', capsShift: '`' }, ru: { text: 'Tab', CapsLock: 'Tab', Shift: 'Tab' },
-  },
-
-  {
-    type: 'symbol', keycode: 81, key: 'q', en: { text: 'q', CapsLock: 'Q', Shift: 'Q' }, ru: { text: 'й', CapsLock: 'Й', Shift: 'Й' },
-  },
-  {
-    type: 'symbol', keycode: 87, key: 'w', en: { text: 'w', CapsLock: 'W', Shift: 'W' }, ru: { text: 'ц', CapsLock: 'Ц', Shift: 'Ц' },
-  },
-  {
-    type: 'symbol', keycode: 69, key: 'e', en: { text: 'e', CapsLock: 'E', Shift: 'E' }, ru: { text: 'у', CapsLock: 'У', Shift: 'У' },
-  },
-  {
-    type: 'symbol', keycode: 82, key: 'r', en: { text: 'r', CapsLock: 'R', Shift: 'R' }, ru: { text: 'к', CapsLock: 'К', Shift: 'К' },
-  },
-  {
-    type: 'symbol', keycode: 84, key: 't', en: { text: 't', CapsLock: 'T', Shift: 'T' }, ru: { text: 'е', CapsLock: 'Е', Shift: 'Е' },
-  },
-  {
-    type: 'symbol', keycode: 89, key: 'y', en: { text: 'y', CapsLock: 'Y', Shift: 'Y' }, ru: { text: 'н', CapsLock: 'Н', Shift: 'Н' },
-  },
-  {
-    type: 'symbol', keycode: 85, key: 'u', en: { text: 'u', CapsLock: 'U', Shift: 'U' }, ru: { text: 'г', CapsLock: 'Г', Shift: 'Г' },
-  },
-  {
-    type: 'symbol', keycode: 73, key: 'i', en: { text: 'i', CapsLock: 'I', Shift: 'I' }, ru: { text: 'ш', CapsLock: 'Ш', Shift: 'Ш' },
-  },
-  {
-    type: 'symbol', keycode: 79, key: 'o', en: { text: 'o', CapsLock: 'O', Shift: 'O' }, ru: { text: 'щ', CapsLock: 'Щ', Shift: 'Щ' },
-  },
-  {
-    type: 'symbol', keycode: 80, key: 'p', en: { text: 'p', CapsLock: 'P', Shift: 'P' }, ru: { text: 'з', CapsLock: 'З', Shift: 'З' },
-  },
-  {
-    type: 'symbol', keycode: 219, key: '[', en: { text: '[', CapsLock: '[', Shift: '{' }, ru: { text: 'х', CapsLock: 'Х', Shift: 'Х' },
-  },
-  {
-    type: 'symbol', keycode: 221, key: ']', en: { text: ']', CapsLock: ']', Shift: '}' }, ru: { text: 'ъ', CapsLock: 'Ъ', Shift: 'Ъ' },
-  },
-  {
-    type: 'symbol', keycode: 220, key: '\\', en: { text: '\\', CapsLock: '\\', Shift: '|' }, ru: { text: '\\', CapsLock: '\\', Shift: '/' },
-  },
-
-  {
-    type: 'Del', keycode: 46, key: 'Delete', en: { text: 'Del', CapsLock: 'Del', Shift: 'Del' }, ru: { text: 'Del', CapsLock: 'Del', Shift: 'Del' },
-  },
-  {
-    type: 'CapsLock', keycode: 20, key: 'CapsLock', en: { text: 'CapsLock', CapsLock: 'CapsLock', Shift: 'CapsLock' }, ru: { text: 'CapsLock', CapsLock: 'CapsLock', Shift: 'CapsLock' },
-  },
-
-  {
-    type: 'symbol', keycode: 65, key: 'a', en: { text: 'a', CapsLock: 'A', Shift: 'A' }, ru: { text: 'ф', CapsLock: 'Ф', Shift: 'Ф' },
-  },
-  {
-    type: 'symbol', keycode: 83, key: 's', en: { text: 's', CapsLock: 'S', Shift: 'S' }, ru: { text: 'ы', CapsLock: 'Ы', Shift: 'Ы' },
-  },
-  {
-    type: 'symbol', keycode: 68, key: 'd', en: { text: 'd', CapsLock: 'D', Shift: 'D' }, ru: { text: 'в', CapsLock: 'В', Shift: 'В' },
-  },
-  {
-    type: 'symbol', keycode: 70, key: 'f', en: { text: 'f', CapsLock: 'F', Shift: 'F' }, ru: { text: 'а', CapsLock: 'А', Shift: 'А' },
-  },
-  {
-    type: 'symbol', keycode: 71, key: 'g', en: { text: 'g', CapsLock: 'G', Shift: 'G' }, ru: { text: 'п', CapsLock: 'П', Shift: 'П' },
-  },
-  {
-    type: 'symbol', keycode: 72, key: 'h', en: { text: 'h', CapsLock: 'H', Shift: 'H' }, ru: { text: 'р', CapsLock: 'Р', Shift: 'Р' },
-  },
-  {
-    type: 'symbol', keycode: 74, key: 'j', en: { text: 'j', CapsLock: 'J', Shift: 'J' }, ru: { text: 'о', CapsLock: 'О', Shift: 'О' },
-  },
-  {
-    type: 'symbol', keycode: 75, key: 'k', en: { text: 'k', CapsLock: 'K', Shift: 'J' }, ru: { text: 'л', CapsLock: 'Л', Shift: 'Л' },
-  },
-  {
-    type: 'symbol', keycode: 76, key: 'l', en: { text: 'l', CapsLock: 'L', Shift: 'L' }, ru: { text: 'д', CapsLock: 'Д', Shift: 'Д' },
-  },
-  {
-    type: 'symbol', keycode: 186, key: ';', en: { text: ';', CapsLock: ';', Shift: ':' }, ru: { text: 'ж', CapsLock: 'Ж', Shift: 'Ж' },
-  },
-  {
-    type: 'symbol', keycode: 222, key: '\'', en: { text: '\'', CapsLock: '\'', Shift: '"' }, ru: { text: 'э', CapsLock: 'Э', Shift: 'Э' },
-  },
-
-  {
-    type: 'Enter', keycode: 13, key: 'Enter', en: { text: 'Enter', CapsLock: 'Enter', Shift: 'Enter' }, ru: { text: 'Enter', CapsLock: 'Enter', Shift: 'Enter' },
-  },
-  {
-    type: 'Shift', keycode: 16, key: 'Shift', en: { text: 'Shift', CapsLock: 'Shift', Shift: 'Shift' }, ru: { text: 'Shift', CapsLock: 'Shift', Shift: 'Shift' },
-  },
-
-  {
-    type: 'symbol', keycode: 90, key: 'z', en: { text: 'z', CapsLock: 'Z', Shift: 'Z' }, ru: { text: 'я', CapsLock: 'Я', Shift: 'Я' },
-  },
-  {
-    type: 'symbol', keycode: 88, key: 'x', en: { text: 'x', CapsLock: 'X', Shift: 'X' }, ru: { text: 'ч', CapsLock: 'Ч', Shift: 'Ч' },
-  },
-  {
-    type: 'symbol', keycode: 67, key: 'c', en: { text: 'c', CapsLock: 'C', Shift: 'C' }, ru: { text: 'с', CapsLock: 'С', Shift: 'С' },
-  },
-  {
-    type: 'symbol', keycode: 86, key: 'v', en: { text: 'v', CapsLock: 'V', Shift: 'V' }, ru: { text: 'м', CapsLock: 'М', Shift: 'М' },
-  },
-  {
-    type: 'symbol', keycode: 66, key: 'b', en: { text: 'b', CapsLock: 'B', Shift: 'B' }, ru: { text: 'и', CapsLock: 'И', Shift: 'И' },
-  },
-  {
-    type: 'symbol', keycode: 78, key: 'n', en: { text: 'n', CapsLock: 'N', Shift: 'N' }, ru: { text: 'т', CapsLock: 'Т', Shift: 'Т' },
-  },
-  {
-    type: 'symbol', keycode: 77, key: 'm', en: { text: 'm', CapsLock: 'M', Shift: 'M' }, ru: { text: 'ь', CapsLock: 'Ь', Shift: 'Ь' },
-  },
-  {
-    type: 'symbol', keycode: 188, key: ',', en: { text: ',', CapsLock: ',', Shift: '<' }, ru: { text: 'б', CapsLock: 'Б', Shift: 'Б' },
-  },
-  {
-    type: 'symbol', keycode: 190, key: '.', en: { text: '.', CapsLock: '.', Shift: '>' }, ru: { text: 'ю', CapsLock: 'Ю', Shift: 'Ю' },
-  },
-  {
-    type: 'symbol', keycode: 191, key: '/', en: { text: '/', CapsLock: '/', Shift: '?' }, ru: { text: '.', CapsLock: '.', Shift: ',' },
+    type: 'symbol',
+    keycode: 187,
+    key: '=',
+    en: {
+      text: '=', capsLock: '=', shift: '+', capsShift: '+',
+    },
+    ru: {
+      text: '=', capsLock: '=', shift: '+', capsShift: '+',
+    },
   },
 
   {
-    type: 'Arrow', keycode: 38, key: 'ArrowUp', en: { text: '▲', CapsLock: '▲', Shift: '▲' }, ru: { text: '▲', CapsLock: '▲', Shift: '▲' },
+    type: 'Backspace',
+    keycode: 8,
+    key: 'Backspace',
+    en: {
+      text: 'Backspace', capsLock: 'Backspace', shift: 'Backspace', capsShift: 'Backspace',
+    },
+    ru: {
+      text: 'Backspace', capsLock: 'Backspace', shift: 'Backspace', capsShift: 'Backspace',
+    },
   },
+
+  // row 2
+
   {
-    type: 'Shift', keycode: 17, key: 'Shift', en: { text: 'Shift', CapsLock: 'Shift', Shift: 'Shift' }, ru: { text: 'Shift', CapsLock: 'Shift', Shift: 'Shift' },
+    type: 'Tab',
+    keycode: 9,
+    key: 'Tab',
+    en: {
+      text: 'Tab', capsLock: 'Tab', shift: 'Tab', capsShift: 'Tab',
+    },
+    ru: {
+      text: 'Tab', capsLock: 'Tab', shift: 'Tab', capsShift: 'Tab',
+    },
   },
 
   {
-    type: 'Ctrl', keycode: 16, key: 'Control', en: { text: 'Ctrl', CapsLock: 'Ctrl', Shift: 'Ctrl' }, ru: { text: 'Ctrl', CapsLock: 'Ctrl', Shift: 'Ctrl' },
+    type: 'symbol',
+    keycode: 81,
+    key: 'q',
+    en: {
+      text: 'q', capsLock: 'Q', shift: 'Q', capsShift: 'q',
+    },
+    ru: {
+      text: 'й', capsLock: 'Й', shift: 'Й', capsShift: 'й',
+    },
   },
   {
-    type: 'Win', keycode: 91, key: 'Meta', en: { text: 'Win', CapsLock: 'Win', Shift: 'Win' }, ru: { text: 'Win', CapsLock: 'Win', Shift: 'Win' },
+    type: 'symbol',
+    keycode: 87,
+    key: 'w',
+    en: {
+      text: 'w', capsLock: 'W', shift: 'W', capsShift: 'w',
+    },
+    ru: {
+      text: 'ц', capsLock: 'Ц', shift: 'Ц', capsShift: 'ц',
+    },
   },
   {
-    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', CapsLock: 'Alt', Shift: 'Alt' }, ru: { text: 'Alt', CapsLock: 'Alt', Shift: 'Alt' },
+    type: 'symbol',
+    keycode: 69,
+    key: 'e',
+    en: {
+      text: 'e', capsLock: 'E', shift: 'E', capsShift: 'e',
+    },
+    ru: {
+      text: 'у', capsLock: 'У', shift: 'У', capsShift: 'у',
+    },
   },
   {
-    type: 'Lang', keycode: 0, key: 'Lang', en: { text: 'en/ru', CapsLock: 'EN/RU', Shift: 'EN/RU' }, ru: { text: 'en/ru', CapsLock: 'EN/RU', Shift: 'EN/RU' },
+    type: 'symbol',
+    keycode: 82,
+    key: 'r',
+    en: {
+      text: 'r', capsLock: 'R', shift: 'R', capsShift: 'r',
+    },
+    ru: {
+      text: 'к', capsLock: 'К', shift: 'К', capsShift: 'к',
+    },
   },
   {
-    type: 'Space', keycode: 32, key: '', en: { text: 'Space', CapsLock: 'Space', Shift: 'Space' }, ru: { text: 'Space', CapsLock: 'Space', Shift: 'Space' },
+    type: 'symbol',
+    keycode: 84,
+    key: 't',
+    en: {
+      text: 't', capsLock: 'T', shift: 'T', capsShift: 't',
+    },
+    ru: {
+      text: 'е', capsLock: 'Е', shift: 'Е', capsShift: 'е',
+    },
   },
   {
-    type: 'Alt', keycode: 18, key: 'Alt', en: { text: 'Alt', CapsLock: 'Alt', Shift: 'Alt' }, ru: { text: 'Alt', CapsLock: 'Alt', Shift: 'Alt' },
+    type: 'symbol',
+    keycode: 89,
+    key: 'y',
+    en: {
+      text: 'y', capsLock: 'Y', shift: 'Y', capsShift: 'y',
+    },
+    ru: {
+      text: 'н', capsLock: 'Н', shift: 'Н', capsShift: 'н',
+    },
   },
   {
-    type: 'Arrow', keycode: 37, key: 'ArrowLeft', en: { text: '◀', CapsLock: '◀', Shift: '◀' }, ru: { text: '◀', CapsLock: '◀', Shift: '◀' },
+    type: 'symbol',
+    keycode: 85,
+    key: 'u',
+    en: {
+      text: 'u', capsLock: 'U', shift: 'U', capsShift: 'u',
+    },
+    ru: {
+      text: 'г', capsLock: 'Г', shift: 'Г', capsShift: 'г',
+    },
   },
   {
-    type: 'Arrow', keycode: 40, key: 'ArrowDown', en: { text: '▼', CapsLock: '▼', Shift: '▼' }, ru: { text: '▼', CapsLock: '▼', Shift: '▼' },
+    type: 'symbol',
+    keycode: 73,
+    key: 'i',
+    en: {
+      text: 'i', capsLock: 'I', shift: 'I', capsShift: 'i',
+    },
+    ru: {
+      text: 'ш', capsLock: 'Ш', shift: 'Ш', capsShift: 'ш',
+    },
   },
   {
-    type: 'Arrow', keycode: 39, key: 'ArrowRight', en: { text: '▶', CapsLock: '▶', Shift: '▶' }, ru: { text: '▶', CapsLock: '▶', Shift: '▶' },
+    type: 'symbol',
+    keycode: 79,
+    key: 'o',
+    en: {
+      text: 'o', capsLock: 'O', shift: 'O', capsShift: 'o',
+    },
+    ru: {
+      text: 'щ', capsLock: 'Щ', shift: 'Щ', capsShift: 'щ',
+    },
   },
   {
-    type: 'Ctrl', keycode: 17, key: 'Control', en: { text: 'Ctrl', CapsLock: 'Ctrl', Shift: 'Ctrl' }, ru: { text: 'Ctrl', CapsLock: 'Ctr', Shift: 'Ctr' },
+    type: 'symbol',
+    keycode: 80,
+    key: 'p',
+    en: {
+      text: 'p', capsLock: 'P', shift: 'P', capsShift: 'p',
+    },
+    ru: {
+      text: 'з', capsLock: 'З', shift: 'З', capsShift: 'з',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 219,
+    key: '[',
+    en: {
+      text: '[', capsLock: '[', shift: '{', capsShift: '{',
+    },
+    ru: {
+      text: 'х', capsLock: 'Х', shift: 'Х', capsShift: 'х',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 221,
+    key: ']',
+    en: {
+      text: ']', capsLock: ']', shift: '}', capsShift: '}',
+    },
+    ru: {
+      text: 'ъ', capsLock: 'Ъ', shift: 'Ъ', capsShift: 'ъ',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 220,
+    key: '\\',
+    en: {
+      text: '\\', capsLock: '\\', shift: '|', capsShift: '|',
+    },
+    ru: {
+      text: '\\', capsLock: '\\', shift: '/', capsShift: '/',
+    },
   },
 
+  {
+    type: 'Del',
+    keycode: 46,
+    key: 'Delete',
+    en: {
+      text: 'Del', capsLock: 'Del', shift: 'Del', capsShift: 'Del',
+    },
+    ru: {
+      text: 'Del', capsLock: 'Del', shift: 'Del', capsShift: 'Del',
+    },
+  },
+
+  // row 3
+
+  {
+    type: 'CapsLock',
+    keycode: 20,
+    key: 'CapsLock',
+    en: {
+      text: 'CapsLock', capsLock: 'CapsLock', shift: 'CapsLock', capsShift: 'CapsLock',
+    },
+    ru: {
+      text: 'CapsLock', capsLock: 'CapsLock', shift: 'CapsLock', capsShift: 'CapsLock',
+    },
+  },
+
+  {
+    type: 'symbol',
+    keycode: 65,
+    key: 'a',
+    en: {
+      text: 'a', capsLock: 'A', shift: 'A', capsShift: 'a',
+    },
+    ru: {
+      text: 'ф', capsLock: 'Ф', shift: 'Ф', capsShift: 'ф',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 83,
+    key: 's',
+    en: {
+      text: 's', capsLock: 'S', shift: 'S', capsShift: 's',
+    },
+    ru: {
+      text: 'ы', capsLock: 'Ы', shift: 'Ы', capsShift: 'ы',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 68,
+    key: 'd',
+    en: {
+      text: 'd', capsLock: 'D', shift: 'D', capsShift: 'd',
+    },
+    ru: {
+      text: 'в', capsLock: 'В', shift: 'В', capsShift: 'в',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 70,
+    key: 'f',
+    en: {
+      text: 'f', capsLock: 'F', shift: 'F', capsShift: 'f',
+    },
+    ru: {
+      text: 'а', capsLock: 'А', shift: 'А', capsShift: 'а',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 71,
+    key: 'g',
+    en: {
+      text: 'g', capsLock: 'G', shift: 'G', capsShift: 'g',
+    },
+    ru: {
+      text: 'п', capsLock: 'П', shift: 'П', capsShift: 'п',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 72,
+    key: 'h',
+    en: {
+      text: 'h', capsLock: 'H', shift: 'H', capsShift: 'h',
+    },
+    ru: {
+      text: 'р', capsLock: 'Р', shift: 'Р', capsShift: 'р',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 74,
+    key: 'j',
+    en: {
+      text: 'j', capsLock: 'J', shift: 'J', capsShift: 'j',
+    },
+    ru: {
+      text: 'о', capsLock: 'О', shift: 'О', capsShift: 'о',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 75,
+    key: 'k',
+    en: {
+      text: 'k', capsLock: 'K', shift: 'K', capsShift: 'k',
+    },
+    ru: {
+      text: 'л', capsLock: 'Л', shift: 'Л', capsShift: 'л',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 76,
+    key: 'l',
+    en: {
+      text: 'l', capsLock: 'L', shift: 'L', capsShift: 'l',
+    },
+    ru: {
+      text: 'д', capsLock: 'Д', shift: 'Д', capsShift: 'д',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 186,
+    key: ';',
+    en: {
+      text: ';', capsLock: ';', shift: ':', capsShift: ':',
+    },
+    ru: {
+      text: 'ж', capsLock: 'Ж', shift: 'Ж', capsShift: 'ж',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 222,
+    key: '\'',
+    en: {
+      text: '\'', capsLock: '\'', shift: '"', capsShift: '"',
+    },
+    ru: {
+      text: 'э', capsLock: 'Э', shift: 'Э', capsShift: 'э',
+    },
+  },
+  {
+    type: 'Enter',
+    keycode: 13,
+    key: 'Enter',
+    en: {
+      text: 'Enter', capsLock: 'Enter', shift: 'Enter', capsShift: 'Enter',
+    },
+    ru: {
+      text: 'Enter', capsLock: 'Enter', shift: 'Enter', capsShift: 'Enter',
+    },
+  },
+
+  // row 4
+
+  {
+    type: 'Shift',
+    keycode: 16,
+    key: 'Shift',
+    en: {
+      text: 'Shift', capsLock: 'Shift', shift: 'Shift', capsShift: 'Shift',
+    },
+    ru: {
+      text: 'Shift', capsLock: 'Shift', shift: 'Shift', capsShift: 'Shift',
+    },
+  },
+
+  {
+    type: 'symbol',
+    keycode: 90,
+    key: 'z',
+    en: {
+      text: 'z', capsLock: 'Z', shift: 'Z', capsShift: 'z',
+    },
+    ru: {
+      text: 'я', capsLock: 'Я', shift: 'Я', capsShift: 'я',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 88,
+    key: 'x',
+    en: {
+      text: 'x', capsLock: 'X', shift: 'X', capsShift: 'x',
+    },
+    ru: {
+      text: 'ч', capsLock: 'Ч', shift: 'Ч', capsShift: 'ч',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 67,
+    key: 'c',
+    en: {
+      text: 'c', capsLock: 'C', shift: 'C', capsShift: 'c',
+    },
+    ru: {
+      text: 'с', capsLock: 'С', shift: 'С', capsShift: 'с',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 86,
+    key: 'v',
+    en: {
+      text: 'v', capsLock: 'V', shift: 'V', capsShift: 'v',
+    },
+    ru: {
+      text: 'м', capsLock: 'М', shift: 'М', capsShift: 'м',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 66,
+    key: 'b',
+    en: {
+      text: 'b', capsLock: 'B', shift: 'B', capsShift: 'b',
+    },
+    ru: {
+      text: 'и', capsLock: 'И', shift: 'И', capsShift: 'и',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 78,
+    key: 'n',
+    en: {
+      text: 'n', capsLock: 'N', shift: 'N', capsShift: 'n',
+    },
+    ru: {
+      text: 'т', capsLock: 'Т', shift: 'Т', capsShift: 'т',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 77,
+    key: 'm',
+    en: {
+      text: 'm', capsLock: 'M', shift: 'M', capsShift: 'm',
+    },
+    ru: {
+      text: 'ь', capsLock: 'Ь', shift: 'Ь', capsShift: 'ь',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 188,
+    key: ',',
+    en: {
+      text: ',', capsLock: ',', shift: '<', capsShift: '<',
+    },
+    ru: {
+      text: 'б', capsLock: 'Б', shift: 'Б', capsShift: 'б',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 190,
+    key: '.',
+    en: {
+      text: '.', capsLock: '.', shift: '>', capsShift: '>',
+    },
+    ru: {
+      text: 'ю', capsLock: 'Ю', shift: 'Ю', capsShift: 'ю',
+    },
+  },
+  {
+    type: 'symbol',
+    keycode: 191,
+    key: '/',
+    en: {
+      text: '/', capsLock: '/', shift: '?', capsShift: '?',
+    },
+    ru: {
+      text: '.', capsLock: '.', shift: ',', capsShift: ',',
+    },
+  },
+
+  {
+    type: 'Arrow',
+    keycode: 38,
+    key: 'ArrowUp',
+    en: {
+      text: '▲', capsLock: '▲', shift: '▲', capsShift: '▲',
+    },
+    ru: {
+      text: '▲', capsLock: '▲', shift: '▲', capsShift: '▲',
+    },
+  },
+  {
+    type: 'Shift',
+    keycode: 17,
+    key: 'Shift',
+    en: {
+      text: 'Shift', capsLock: 'Shift', shift: 'Shift', capsShift: 'Shift',
+    },
+    ru: {
+      text: 'Shift', capsLock: 'Shift', shift: 'Shift', capsShift: 'Shift',
+    },
+  },
+
+  // row 5
+
+  {
+    type: 'Ctrl',
+    keycode: 16,
+    key: 'Control',
+    en: {
+      text: 'Ctrl', capsLock: 'Ctrl', shift: 'Ctrl', capsShift: 'Ctrl',
+    },
+    ru: {
+      text: 'Ctrl', capsLock: 'Ctrl', shift: 'Ctrl', capsShift: 'Ctrl',
+    },
+  },
+  {
+    type: 'Win',
+    keycode: 91,
+    key: 'Meta',
+    en: {
+      text: 'Win', capsLock: 'Win', shift: 'Win', capsShift: 'Win',
+    },
+    ru: {
+      text: 'Win', capsLock: 'Win', shift: 'Win', capsShift: 'Win',
+    },
+  },
+  {
+    type: 'Alt',
+    keycode: 18,
+    key: 'Alt',
+    en: {
+      text: 'Alt', capsLock: 'Alt', shift: 'Alt', capsShift: 'Alt',
+    },
+    ru: {
+      text: 'Alt', capsLock: 'Alt', shift: 'Alt', capsShift: 'Alt',
+    },
+  },
+  {
+    type: 'Lang',
+    keycode: 0,
+    key: 'Lang',
+    en: {
+      text: 'en/ru', capsLock: 'EN/RU', shift: 'EN/RU', capsShift: 'en/ru',
+    },
+    ru: {
+      text: 'en/ru', capsLock: 'EN/RU', shift: 'EN/RU', capsShift: 'en/ru',
+    },
+  },
+  {
+    type: 'Space',
+    keycode: 32,
+    key: '',
+    en: {
+      text: 'Space', capsLock: 'Space', shift: 'Space', capsShift: 'Space',
+    },
+    ru: {
+      text: 'Space', capsLock: 'Space', shift: 'Space', capsShift: 'Space',
+    },
+  },
+  {
+    type: 'Alt',
+    keycode: 18,
+    key: 'Alt',
+    en: {
+      text: 'Alt', capsLock: 'Alt', shift: 'Alt', capsShift: 'Alt',
+    },
+    ru: {
+      text: 'Alt', capsLock: 'Alt', shift: 'Alt', capsShift: 'Alt',
+    },
+  },
+  {
+    type: 'Arrow',
+    keycode: 37,
+    key: 'ArrowLeft',
+    en: {
+      text: '◀', capsLock: '◀', shift: '◀', capsShift: '◀',
+    },
+    ru: {
+      text: '◀', capsLock: '◀', shift: '◀', capsShift: '◀',
+    },
+  },
+  {
+    type: 'Arrow',
+    keycode: 40,
+    key: 'ArrowDown',
+    en: {
+      text: '▼', capsLock: '▼', shift: '▼', capsShift: '▼',
+    },
+    ru: {
+      text: '▼', capsLock: '▼', shift: '▼', capsShift: '▼',
+    },
+  },
+  {
+    type: 'Arrow',
+    keycode: 39,
+    key: 'ArrowRight',
+    en: {
+      text: '▶', capsLock: '▶', shift: '▶', capsShift: '▶',
+    },
+    ru: {
+      text: '▶', capsLock: '▶', shift: '▶', capsShift: '▶',
+    },
+  },
+  {
+    type: 'Ctrl',
+    keycode: 17,
+    key: 'Control',
+    en: {
+      text: 'Ctrl', capsLock: 'Ctrl', shift: 'Ctrl', capsShift: 'Ctrl',
+    },
+    ru: {
+      text: 'Ctrl', capsLock: 'Ctrl', shift: 'Ctrl', capsShift: 'Ctrl',
+    },
+  },
 ];
 
 export { keysArray, keyCode };
