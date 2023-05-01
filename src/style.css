@@ -1,38 +1,69 @@
+button {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .title {
+  margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
+
+  font-size: 40px;
+  color: #335c81;
 }
 
 .subtitle {
   text-align: center;
+  color: #b6c5ce;
 }
 
 .key-textarea {
   display: block;
   margin: 0 auto;
-  border: 1px solid green;
+  border: 1px solid #335c81;
+  border-radius: 5px;
+}
+.key-textarea:focus {
+  border: 1px solid #335c81;
 }
 
 .key-container {
   margin: 0 auto;
-  border: 1px solid red;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 820px;
+  padding: 15px 15px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 4px 4px 7px #7a81b8, -4px -4px 7px #AFB3D4;
+  background-color: #9297c4;
 
   display: grid;
-  grid-template-columns: repeat(15, 40px);
-  grid-template-rows: repeat(5, 40px);
-  gap: 5px;
+  grid-template-columns: repeat(15, 45px);
+  grid-template-rows: repeat(5, 45px);
+  gap: 10px;
   justify-content: center;
 }
 
 .key {
-  border: 1px solid darkgrey;
+  /* border: 1px solid darkgrey; */
   display: flex; 
   justify-content: center;
   align-items: center;
+
+  color: #335c81;
+  border-radius: 4px;
+
+  box-shadow: 3px 3px 6px  #7a81b8, -3px -3px 6px #afb3d4;
+  transition: 0.1s;
 }
 .key:active,
 .active {
-  border: 1px solid red;
-  color: red;
+  box-shadow: 1px 1px 1px  #7a81b8, -1px -1px 1px #afb3d4;
+  color: #afb3d4;
+  /* border: 1px solid red;
+  color: red; */
 }
 
 .key_long {
@@ -41,4 +72,8 @@
 }
 .key_space {
   grid-column: span 6;
+  color: transparent;
+}
+.key_space:active {
+  color: transparent;
 }
