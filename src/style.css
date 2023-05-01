@@ -29,6 +29,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .key_long {
   grid-column: span 2;
 

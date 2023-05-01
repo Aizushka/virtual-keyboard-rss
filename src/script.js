@@ -1,4 +1,4 @@
-import { keys } from './additional.js';
+import { keysArray } from './additional.js';
 // import { keyCode } from './additional.js';
 
 // отрисовать базовые элементы страницы: название, блок ввода текста, блок под кнопки, подписи
@@ -37,10 +37,9 @@ drawMainPage();
 const container = document.querySelector('.key-container');
 
 function drawKeyBoard(langf = 'en', statef = 'text') {
-  for (let i = 0; i < keys.length; i += 1) {
+  for (let i = 0; i < keysArray.length; i += 1) {
     const key = document.createElement('button');
-
-    switch (keys[i][langf][statef]) {
+    switch (keysArray[i][langf][statef]) {
       case 'Backspace':
         key.className = 'key key_long key_backspace';
         break;
@@ -48,10 +47,10 @@ function drawKeyBoard(langf = 'en', statef = 'text') {
         key.className = 'key key_del';
         break;
       case 'CapsLock':
-        key.className = 'key key_long key_capslock';
+        key.className = 'key key_long key_capslock key_changeState';
         break;
       case 'Shift':
-        key.className = 'key key_long key_shift';
+        key.className = 'key key_long key_shift key_changeState';
         break;
       case 'Ctrl':
         key.className = 'key key_ctrl';
@@ -91,7 +90,7 @@ function drawKeyBoard(langf = 'en', statef = 'text') {
     }
 
     key.setAttribute('type', 'button');
-    key.innerHTML = keys[i][langf][statef];
+    key.innerHTML = keysArray[i][langf][statef];
     container.appendChild(key);
   }
 }
@@ -108,14 +107,19 @@ const space = document.querySelector('.key_space');
 const backspace = document.querySelector('.key_backspace');
 // const del = document.querySelector('.key_del');
 const capsLock = document.querySelector('.key_capslock');
+const shifts = document.querySelectorAll('.key_shift');
 const lang = document.querySelector('.key_lang');
-// const shifts = document.querySelectorAll('.key_shift');
 // const ctrls = document.querySelectorAll('.key_ctrl');
-// const win = document.querySelectorAll('.key_win');
+// const win = document.querySelector('.key_win');
 // const alt = document.querySelectorAll('.key_alt');
+// const keysChangeState = document.querySelectorAll('.key_changeState');    // CapsLock + Shifts
 
 let keysLanguage = 'en';
 let keysState = 'text';
+let newKeysState;
+
+let shiftIsActive = false;
+let capsIsActive = false;
 
 // список функций
 
@@ -138,51 +142,63 @@ function addSymbols(symbol) {
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
-function changeCase(language, state, newState) {
-  for (let i = 0; i < keys.length; i += 1) {
-    if (keys[i][language][state] === lang.innerHTML) {
-      lang.innerHTML = keys[i][language][newState];
-      break;
-    }
-    for (let j = 0; j < symbols.length; j += 1) {
-      if (keys[i][language][state] === symbols[j].innerHTML) {
-        symbols[j].innerHTML = keys[i][language][newState];
-        break;
-      }
-    }
+
+function getState() {
+  if (capsIsActive && shiftIsActive) {
+    newKeysState = 'capsShift';
+  } else if (capsIsActive && !shiftIsActive) {
+    newKeysState = 'CapsLock';
+  } else if (shiftIsActive && !capsIsActive) {
+    newKeysState = 'Shift';
+  } else {
+    newKeysState = 'text';
   }
 }
 
-function changeLang(language, newLanguage, state) {
+function changeSymbols(newLanguage, newState) {
   for (let i = 0; i < symbols.length; i += 1) {
-    for (let j = 0; j < keys.length; j += 1) {
-      if (symbols[i].innerHTML === keys[j][language][state]) {
-        symbols[i].innerHTML = keys[j][newLanguage][state];
+    for (let j = 0; j < keysArray.length; j += 1) {
+      if (symbols[i].innerHTML === keysArray[j][keysLanguage][keysState]) {
+        symbols[i].innerHTML = keysArray[j][newLanguage][newState];
         break;
       }
     }
   }
+
+  keysState = newKeysState;
 }
 
-// screen.focus();
-// function deleteNextSymbol() {
-//   console.log('del');
+capsLock.addEventListener('click', () => {
+  capsLock.classList.toggle('active');
+  if (capsIsActive === true) {
+    capsIsActive = false;
+  } else {
+    capsIsActive = true;
+  }
 
-//   screen.focus();
+  getState();
+  changeSymbols(keysLanguage, newKeysState);
+  //
+});
 
-//   screen.setRangeText('', screen.selectionStart, screen.selectionstart + 1, 'start');
-// }
+shifts.forEach((shift) => {
+  shift.addEventListener('click', () => {
+    if (shiftIsActive === true) {
+      shiftIsActive = false;
+    } else {
+      shiftIsActive = true;
+    }
 
-// отслеживание курсора
+    if (shift.classList.contains('active')) {
+      shifts.forEach((e) => e.classList.remove('active'));
+    } else {
+      shifts.forEach((e) => e.classList.add('active'));
+    }
 
-// add EventListeners
-
-// screen.addEventListener('focus', () => {
-//   let start = screen.selectionStart;
-//   let end = screen.selectionEnd;
-//   console.log(start);
-//   console.log(end);
-// });
+    getState();
+    changeSymbols(keysLanguage, newKeysState);
+  });
+});
 
 for (let i = 0; i < symbols.length; i += 1) {
   symbols[i].addEventListener('click', () => {
@@ -198,28 +214,10 @@ enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
 tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
 space.addEventListener('click', () => { addSymbols(space.innerHTML); });
 backspace.addEventListener('click', () => { deletePreviousSymbol(); });
-// del.addEventListener('click', () => { deleteNextSymbol(); });
-capsLock.addEventListener('click', () => {
-  capsLock.classList.toggle('active');
-
-  let newKeysState;
-  if (keysState === 'text') {
-    newKeysState = 'caps';
-  } else if (keysState === 'caps') {
-    newKeysState = 'text';
-  }
-  changeCase(keysLanguage, keysState, newKeysState);
-  keysState = newKeysState;
-});
 
 lang.addEventListener('click', () => {
-  let newKeysLanguage;
-  if (keysLanguage === 'en') {
-    newKeysLanguage = 'ru';
-  } else {
-    newKeysLanguage = 'en';
-  }
-  changeLang(keysLanguage, newKeysLanguage, keysState);
+  const newKeysLanguage = keysLanguage === 'en' ? 'ru' : 'en';
+  changeSymbols(newKeysLanguage, keysState);
   keysLanguage = newKeysLanguage;
 });
 
