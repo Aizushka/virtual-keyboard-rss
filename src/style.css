@@ -47,7 +47,6 @@ button {
 }
 
 .key {
-  /* border: 1px solid darkgrey; */
   display: flex; 
   justify-content: center;
   align-items: center;
@@ -64,8 +63,6 @@ button {
 .active {
   box-shadow: 1px 1px 1px  #7a81b8, -1px -1px 1px #afb3d4;
   color: #afb3d4;
-  /* border: 1px solid red;
-  color: red; */
 }
 
 .key_long {
