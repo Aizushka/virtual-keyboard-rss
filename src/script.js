@@ -1,5 +1,4 @@
 import { keysArray } from './additional.js';
-// import { keyCode } from './additional.js';
 
 // отрисовать базовые элементы страницы: название, блок ввода текста, блок под кнопки, подписи
 function drawMainPage() {
@@ -103,18 +102,21 @@ const screen = document.querySelector('.key-textarea');
 screen.focus();
 const symbols = document.querySelectorAll('.key_symbol');
 const arrows = document.querySelectorAll('.key_arrow');
+const arrowLeft = document.querySelector('.key_arrow-left');
+const arrowRight = document.querySelector('.key_arrow-right');
+const arrowUp = document.querySelector('.key_arrow-up');
+const arrowDown = document.querySelector('.key_arrow-down');
 const tab = document.querySelector('.key_tab');
 const enter = document.querySelector('.key_enter');
 const space = document.querySelector('.key_space');
 const backspace = document.querySelector('.key_backspace');
-// const del = document.querySelector('.key_del');
+const del = document.querySelector('.key_del');
 const capsLock = document.querySelector('.key_capslock');
 const shifts = document.querySelectorAll('.key_shift');
 const lang = document.querySelector('.key_lang');
-// const ctrls = document.querySelectorAll('.key_ctrl');
-// const win = document.querySelector('.key_win');
-// const alt = document.querySelectorAll('.key_alt');
-// const keysChangeState = document.querySelectorAll('.key_changeState');    // CapsLock + Shifts
+const ctrls = document.querySelectorAll('.key_ctrl');
+const win = document.querySelector('.key_win');
+const alts = document.querySelectorAll('.key_alt');
 
 let keysLanguage = 'en';
 let keysState = 'text';
@@ -141,9 +143,11 @@ function addSymbols(symbol) {
       break;
   }
 }
+
 function deletePreviousSymbol() {
   screen.innerHTML = screen.innerHTML.substring(0, screen.innerHTML.length - 1);
 }
+
 function updateState() {
   if (capsIsActive && shiftIsActive) {
     newKeysState = 'capsShift';
@@ -155,6 +159,7 @@ function updateState() {
     newKeysState = 'text';
   }
 }
+
 function changeSymbols(newLanguage, newState) {
   for (let i = 0; i < symbols.length; i += 1) {
     for (let j = 0; j < keysArray.length; j += 1) {
@@ -167,8 +172,20 @@ function changeSymbols(newLanguage, newState) {
       }
     }
   }
-
   keysState = newKeysState;
+}
+
+function removeActiveFromShift() {
+  if (shiftIsActive === true) {
+    shiftIsActive = false;
+  }
+  shifts.forEach((shift) => {
+    if (shift.classList.contains('active')) {
+      shifts.forEach((e) => e.classList.remove('active'));
+    }
+  });
+  updateState();
+  changeSymbols(keysLanguage, newKeysState);
 }
 
 // All eventListeners
@@ -183,8 +200,9 @@ capsLock.addEventListener('click', () => {
 
   updateState();
   changeSymbols(keysLanguage, newKeysState);
-  //
+  removeActiveFromShift();
 });
+
 shifts.forEach((shift) => {
   shift.addEventListener('click', () => {
     if (shiftIsActive === true) {
@@ -203,46 +221,186 @@ shifts.forEach((shift) => {
     changeSymbols(keysLanguage, newKeysState);
   });
 });
+
 lang.addEventListener('click', () => {
   const newKeysLanguage = keysLanguage === 'en' ? 'ru' : 'en';
   changeSymbols(newKeysLanguage, keysState);
   keysLanguage = newKeysLanguage;
+  removeActiveFromShift();
 });
 
 symbols.forEach((symbol) => {
   symbol.addEventListener('click', () => {
     addSymbols(symbol.innerHTML);
+    removeActiveFromShift();
   });
 });
+
 arrows.forEach((arrow) => {
   arrow.addEventListener('click', () => {
     addSymbols(arrow.innerHTML);
+    removeActiveFromShift();
   });
 });
-enter.addEventListener('click', () => { addSymbols(enter.innerHTML); });
-tab.addEventListener('click', () => { addSymbols(tab.innerHTML); });
-space.addEventListener('click', () => { addSymbols(space.innerHTML); });
-backspace.addEventListener('click', () => { deletePreviousSymbol(); });
+
+enter.addEventListener('click', () => {
+  addSymbols(enter.innerHTML);
+  removeActiveFromShift();
+});
+tab.addEventListener('click', () => {
+  addSymbols(tab.innerHTML);
+  removeActiveFromShift();
+});
+
+space.addEventListener('click', () => {
+  addSymbols(space.innerHTML);
+  removeActiveFromShift();
+});
+
+backspace.addEventListener('click', () => {
+  deletePreviousSymbol();
+  removeActiveFromShift();
+});
+
+del.addEventListener('click', () => { removeActiveFromShift(); });
+
+// события физической клавиатуры
+
+// keyDown
 
 document.addEventListener('keydown', (event) => {
-  // -------------Обязательно в коде
   event.preventDefault();
   screen.focus();
-
-  // ----------- Далее Эксперименты
-
   const eventKey = event.key;
-  const charCode = eventKey.charCodeAt();
-
-  console.log(eventKey);
-  // console.log(charCode);
-  // console.log(eventKey.toString().length);
 
   if (eventKey.toString().length === 1) {
-    console.log('this is char!');
-  } else {
-    console.log('this is functiomal!');
+    if (eventKey === ' ') {
+      space.classList.add('active');
+      addSymbols('Space');
+    } else {
+      symbols.forEach((symbol) => {
+        if (symbol.innerHTML === eventKey) {
+          symbol.classList.add('active');
+          addSymbols(symbol.innerHTML);
+        }
+      });
+    }
+  } else if (eventKey.toString().length > 1) {
+    if (eventKey === 'Tab' || eventKey === 'Enter') { //  Tab, Enter
+      const currentKey = eventKey.toLowerCase();
+      const currentButton = document.querySelector(`.key_${currentKey}`);
+      currentButton.classList.add('active');
+      addSymbols(eventKey);
+    } else if (eventKey === 'Backspace') { // Backspace
+      backspace.classList.add('active');
+      deletePreviousSymbol();
+    } else if (eventKey === 'Delete') { // Delete
+      del.classList.add('active');
+    } else if (eventKey === 'Control') { // Control
+      ctrls.forEach((ctrl) => {
+        ctrl.classList.add('active');
+      });
+    } else if (eventKey === 'Alt') { // Alt
+      alts.forEach((alt) => {
+        alt.classList.add('active');
+      });
+    } else if (eventKey === 'Meta') { // Win
+      win.classList.add('active');
+    } else if (eventKey === 'ArrowLeft') { // Arrow Left
+      arrowLeft.classList.add('active');
+    } else if (eventKey === 'ArrowUp') { // Arrow Up
+      arrowUp.classList.add('active');
+    } else if (eventKey === 'ArrowDown') { // Arrow Down
+      arrowDown.classList.add('active');
+    } else if (eventKey === 'ArrowRight') { // Arrow Right
+      arrowRight.classList.add('active');
+    } else if (eventKey === 'Shift') { // Shift
+      if (shiftIsActive === true) {
+        shiftIsActive = false;
+      } else {
+        shiftIsActive = true;
+      }
+      let currentActiveState;
+      shifts.forEach((shift) => {
+        currentActiveState = shift.classList.contains('active') ? 'active' : 'notActive';
+      });
+      shifts.forEach(() => {
+        if (currentActiveState === 'active') {
+          shifts.forEach((e) => e.classList.remove('active'));
+        } else {
+          shifts.forEach((e) => e.classList.add('active'));
+        }
+      });
+      updateState();
+      changeSymbols(keysLanguage, newKeysState);
+    } else if (eventKey === 'CapsLock') { // CapsLock
+      capsLock.classList.toggle('active');
+      if (capsIsActive === true) {
+        capsIsActive = false;
+      } else {
+        capsIsActive = true;
+      }
+      updateState();
+      changeSymbols(keysLanguage, newKeysState);
+    }
   }
+});
 
-  // найти нажимаемый элемент на странице
+// keyUp
+
+document.addEventListener('keyup', (event) => {
+  event.preventDefault();
+  screen.focus();
+  const eventKey = event.key;
+
+  if (eventKey.toString().length === 1) {
+    if (eventKey === ' ') {
+      space.classList.remove('active');
+      removeActiveFromShift();
+    } else {
+      symbols.forEach((symbol) => {
+        if (symbol.innerHTML === eventKey) {
+          symbol.classList.remove('active');
+        }
+      });
+    }
+  } else if (eventKey.toString().length > 1) {
+    if (eventKey === 'Tab' || eventKey === 'Enter') { //  Tab, Enter
+      const currentKey = eventKey.toLowerCase();
+      const currentButton = document.querySelector(`.key_${currentKey}`);
+      currentButton.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'Backspace') { // Backspace
+      backspace.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'Delete') { // Delete
+      del.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'Control') { // Control
+      ctrls.forEach((ctrl) => {
+        ctrl.classList.remove('active');
+      });
+      removeActiveFromShift();
+    } else if (eventKey === 'Alt') { // Alt
+      alts.forEach((alt) => {
+        alt.classList.remove('active');
+      });
+      removeActiveFromShift();
+    } else if (eventKey === 'Meta') { // Win
+      win.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'ArrowLeft') { // Arrow Left
+      arrowLeft.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'ArrowUp') { // Arrow Up
+      arrowUp.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'ArrowDown') { // Arrow Down
+      arrowDown.classList.remove('active');
+      removeActiveFromShift();
+    } else if (eventKey === 'ArrowRight') { // Arrow Right
+      arrowRight.classList.remove('active');
+      removeActiveFromShift();
+    }
+  }
 });
